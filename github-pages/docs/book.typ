@@ -1,58 +1,33 @@
-
 #import "@preview/shiroa:0.1.2": *
 
 #show: book
 
-#book-meta(
-  title: "shiroa",
-  description: "shiroa Documentation",
-  repository: "https://github.com/Myriad-Dreamin/shiroa",
-  repository-edit: "https://github.com/Myriad-Dreamin/shiroa/edit/main/github-pages/docs/{path}",
-  authors: ("Myriad-Dreamin", "7mile"),
+
+#book-meta( // put metadata of your book like book.toml of mdbook
+  title: "Notes",
+  description: "Course notes",
+  repository: "https://ottoqwq.me",
+  authors: ("Otto Deng", "Ohto Ai"),
   language: "en",
-  summary: [ // begin of summary
-    #prefix-chapter("introduction.typ")[Introduction]
-    = User Guide
-    - #chapter("guide/installation.typ")[Installation]
-    - #chapter("guide/get-started.typ")[Get Started]
-    - #chapter("guide/faq.typ")[Frequently Asked Questions]
-    - #chapter(none)[Further reading]
-    = Reference Guide
-    - #chapter("cli/main.typ")[Command Line Tool]
-      - #chapter("cli/init.typ")[init]
-      - #chapter("cli/build.typ")[build]
-      - #chapter("cli/serve.typ")[serve]
-      - #chapter("cli/clean.typ")[clean]
-      - #chapter("cli/completions.typ")[completions]
-    - #chapter("format/main.typ")[Format]
-      - #chapter("format/book.typ")[book.typ]
-        - #chapter("format/book-meta.typ")[Book Metadata]
-          - #chapter(none)[Draft chapter]
-          // - #chapter(none)[chapter with - markers]
-          // - #chapter(none, "= Introduction")
-          // - #chapter(none)[#text("= Introduction")]
-        - #chapter("format/build-meta.typ")[Build Metadata]
-      - #chapter("format/theme.typ")[Theme]
-      - #chapter("format/supports.typ")[Typst Support]
-        - #chapter("format/supports/cross-ref.typ")[Cross Reference]
-          - #chapter("format/supports/cross-ref-sample.typ")[Cross Reference Sample]
-        - #chapter("format/supports/embed-html.typ")[Embed Sanitized HTML Elements]
-          - #chapter("format/supports/multimedia.typ")[Multimedia components]
-        - #chapter("format/supports/sema-desc.typ")[Semantic Page Description]
-    - #chapter(none)[For developers]
-      - #chapter(none)[Typst-side APIs]
-      - #chapter(none)[shiroa CLI Internals]
-      - #chapter(none)[Alternative Backends]
-    // end of summary
+  summary: [ // this field works like summary.md of mdbook
+    #prefix-chapter("intro.typ")[Introduction]
+
+    = 2024 秋季
+    - #chapter("2024fall/流体力学.typ")[流体力学]
+    - #chapter("2024fall/大气化学.typ")[大气化学]
+    - #chapter("2024fall/大气物理.typ")[大气物理]
+    - #chapter("2024fall/数理方程.typ")[数理方程]
+    - #chapter("2024fall/热力学.typ")[热力学]
+
+    = 2025 春季
   ],
 )
+
+
+// re-export page template
+#import "templates/page.typ": project
+#let book-page = project
 
 #build-meta(dest-dir: "../dist")
 
 #get-book-meta()
-
-// re-export page template
-#import "/contrib/typst/gh-pages.typ": project, heading-reference
-#let book-page = project
-#let cross-link = cross-link
-#let heading-reference = heading-reference
