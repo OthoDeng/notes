@@ -24,6 +24,7 @@
 
     = 2025 Spring
     - #chapter("2025spring/天气学原理.typ")[Principles of Meteorology]
+    - #chapter("2025spring/现代气候学.typ")[Modern Climatology]
     - #chapter("2025spring/计算方法.typ")[Computational Methods]
   ],
 )
