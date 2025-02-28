@@ -247,3 +247,50 @@ $
   gradient_h dot arrow(V) = -(partial w)/(partial z)
 $
 故可以用水平风速积分求得垂直对流速度$w$
+
+=== 热力学能量方程
+$
+  c_v (dif T)/(dif t) + p (dif alpha)/(dif t) = Q
+$
+
+== 大尺度运动系统控制方程
+
+在#highlight[中纬度]天气尺度气旋，地面气压在$2000\km$的#highlight[水平距离]上可以变化$20\h\P\a$
+$
+  ((partial p)/(partial x), (partial p)/(partial y) ) approx
+  (delta p)/(delta L) = 
+  (20\h\P\a)/(2000\km) = 10^(-5)\h\P\a\/\m
+$
+
+#table(
+  columns: 2,
+  align: center,
+  inset: 1cm,
+  [$x$分量],
+  [$(dif u)/(dif t) = - 1/rho (partial p)/(partial x) +  2Omega v cos phi - 2Omega w cos phi + F_x$],
+  [$y$分量],
+  [$(dif v)/(dif t) = - 1/rho (partial p)/(partial y) - 2Omega u cos phi + F_y$],
+  [各项尺度],
+  [$V^2/L #h(5pt) (delta P)/(rho L) #h(5pt) f_0 V #h(5pt) f_0 W #h(5pt) (nu V)/(H^2)$ ],
+  [数量级],
+  [$10^(-4) #h(5pt) 10^(-3) #h(5pt) 10^(-3) #h(5pt) 10^(-6) #h(5pt) 10^(-12)$]
+
+)
+- 零级简化：只保留方程中数量级最大的项
+- 一级简化：保留最大项和次大项
+
+零级简化后：
+$
+  cases(
+  - 1/rho (partial p)/(partial x) +  2Omega v cos phi= 0\
+  - 1/rho (partial p)/(partial y) - 2Omega u cos phi =0
+  )
+$
+
+一级简化后：
+$
+  cases(
+    (dif u)/(dif t) = - 1/rho (partial p)/(partial x) +  2Omega v cos phi \
+    (dif v)/(dif t) = - 1/rho (partial p)/(partial y) - 2Omega u cos phi 
+  )
+$
