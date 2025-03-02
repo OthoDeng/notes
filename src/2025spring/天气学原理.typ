@@ -262,6 +262,9 @@ $
   (20\h\P\a)/(2000\km) = 10^(-5)\h\P\a\/\m
 $
 
+
+=== 运动方程
+水平方向尺度分析：
 #table(
   columns: 2,
   align: center,
@@ -276,21 +279,70 @@ $
   [$10^(-4) #h(5pt) 10^(-3) #h(5pt) 10^(-3) #h(5pt) 10^(-6) #h(5pt) 10^(-12)$]
 
 )
+
+垂直方向尺度分析：
+#table(
+  columns: 2,
+  align: center,
+  inset: 1cm,
+  [$z$分量],
+  [$(dif w)/(dif t) = - 1/rho (partial p)/(partial z) + 2Omega u cos phi - g + F_z$],
+  [各项尺度],
+  [$(V W)/L #h(5pt) (P_0)/(rho H) #h(5pt) g #h(5pt) (nu W)/(H^2)$ ],
+  [数量级],
+  [$10^(-7) #h(5pt) 10 #h(5pt) 10^(-3) #h(5pt) 10 #h(5pt) 10^(-15)$]
+)
 - 零级简化：只保留方程中数量级最大的项
 - 一级简化：保留最大项和次大项
 
 零级简化后：
 $
   cases(
-  - 1/rho (partial p)/(partial x) +  2Omega v cos phi= 0\
-  - 1/rho (partial p)/(partial y) - 2Omega u cos phi =0
+  - 1/rho (partial p)/(partial x) +  f v= 0\
+  - 1/rho (partial p)/(partial y) - f u =0
   )
 $
 
 一级简化后：
 $
   cases(
-    (dif u)/(dif t) = - 1/rho (partial p)/(partial x) +  2Omega v cos phi \
-    (dif v)/(dif t) = - 1/rho (partial p)/(partial y) - 2Omega u cos phi 
+    (dif u)/(dif t) = - 1/rho (partial p)/(partial x) +  f v \
+    (dif v)/(dif t) = - 1/rho (partial p)/(partial y) - f u 
   )
+$
+其中$f = 2 Omega sin phi$称为地转参数
+
+垂直方向（准定常）：
+$
+  0 = - 1/rho (partial p)/(partial z) - g
+$
+
+=== 连续方程
+#highlight[准水平无辐散]
+零级简化后：
+$
+  &(partial u)/(partial x) + 
+  (partial v)/(partial y) + 
+  (partial w)/(partial z) + 
+  w (partial ln rho)/(partial z) = 0\
+"or,"\
+  &(partial u)/(partial x) +
+  (partial v)/(partial y) +
+  #h(10pt)
+  1/rho (partial rho w)/(partial z) 
+  #h(27pt)
+  = 0
+$
+
+=== 热力学能量方程
+$
+  p alpha = R T => p (dif alpha)/(dif t) + alpha (dif p)/(dif t)= R (dif T)/(dif t)\
+  c_p = c_v + R
+$
+一级简化后：
+$
+  (partial T)/(partial t) = 
+  - (u (partial T)/(partial x) + v (partial T)/(partial y))
+  + w (gamma_d -gamma)
+  + 1/c_p Q
 $
