@@ -1,7 +1,11 @@
 #import "../book.typ": book-page
-
+#import "@preview/dvdtyp:1.0.1": *
 #show: book-page.with(title: "天气学原理")
 
+#show: dvdtyp.with(
+  title: "天气学原理",
+  author: "Otto Deng"
+)
 #outline()
 
 
@@ -69,12 +73,12 @@ $
   $
     arrow(a)_a = arrow(a) + 2 arrow(Omega) times arrow(V) + arrow(Omega) times (arrow(Omega) times arrow(r))
   $
-
+#theorem[
 $
   arrow(Omega) times (arrow(Omega) times arrow(r)) 
   &= arrow(Omega) times (arrow(Omega) times arrow(R))\
   &=  - Omega^2 arrow(R)
-$
+$]
 
 
 === 真实力
@@ -90,6 +94,7 @@ $ p delta y delta z -
 -  (partial p)/(partial x) delta x delta y delta z$
 
 于是作用于体积元上的总净压力为：
+#definition[
 $ 
  -  
  ((partial p)/(partial x) arrow(i) + 
@@ -99,24 +104,23 @@ $
 - Delta p delta x delta y delta z
 $
 
-
   $
     arrow(G) = - 1/rho gradient p
   $
-
+]
 
 - 地心引力
 $M$对$m$引力$bold(F)_g $大小：
 $
   bold(F)_g = - (G M m)/(r^2) (bold(r)/r)
 $
-
+#definition[
 $
   bold(g)^* = - (G M)/((a+z)^2) (bold(r)/r) = 
   - (G M)/(a^2) dot 1/(1 + z\/a)^2 (bold(r)/r) = 
   bold(g)^*_0 /(1 + z\/a)^2
 $
-
+]
 
 - 摩擦力
 假设$x$方向的风分量$u>0$,并且$u$随着高度增加而增加，即$(partial u)/(partial z) > 0$，$(partial^2 u)/(partial z^2) = 0$
@@ -144,10 +148,12 @@ $或
 $
   F_(z x) = 1/rho (partial)/(partial z) (mu (partial u)/(partial z))
 $
-
+#definition[
 $
   F_z = nu ((partial^2 u)/(partial x^2)+(partial^2 v)/(partial y^2)+(partial^2 w)/(partial z^2))
-$右端前两项远小于第三项，故可近似为：
+$
+]
+右端前两项远小于第三项，故可近似为：
 
 $
   bold(F) = nu (partial^2 bold(V))/(partial z^2)
@@ -164,14 +170,15 @@ $
   (dif bold(V))/(dif t) = Omega^2  bold(R)
 $
 
-惯性离心力：
+#definition("惯性离心力")[
 $
   bold(C) = Omega^2 bold(R)
 $
-$Omega = 2pi \/ 24h = 7.29 times 10 ^(-5) s^(-1)$
+$Omega = 2pi \/ 24h = 7.29 times 10 ^(-5) s^(-1)$]
 
 - 地转偏向力
 自转角速度$bold(Omega)$在$x,y,z$上分量：
+#definition[
 $
   cases(
     Omega_x = 0\
@@ -179,11 +186,12 @@ $
     Omega_z = Omega sin phi
   )
 $
-
+]
 - 重力
+#definition[
 $
   bold(g) eq.triple bold(g)^* + Omega^2 bold(R)
-$
+$]
 == 控制大气的基本规律
 欧拉参考系、拉格朗日参考系（见流体力学）
 
@@ -209,11 +217,11 @@ $
 对温度平流变化的讨论：$- arrow(V) dot gradient_h T = abs(arrow(V)) abs(gradient_h T) cos theta$ 
 
 == 旋转坐标系的大气运动方程
-
+#definition[
 $
   (dif arrow(V))/(dif t) = - 1/rho gradient p - 2 arrow(Omega) times arrow(V) + arrow(g) + arrow(F)
 $
-
+]
 === 球坐标系中的分量方程
 $
   P = P(lambda,phi,r)
@@ -230,7 +238,7 @@ $
 $
 
 === 连续方程
-质量守恒定律：
+#theorem("质量守恒定律")[
 $
 (partial rho)/(partial t) + 
 underbrace(gradient dot (rho arrow(V)),"质量散度") = 0
@@ -240,6 +248,7 @@ $
   1/rho (dif rho)/(dif t) +
  underbrace(gradient dot arrow(V),"速度散度") = 0
 $
+]
 
 对于#highlight[不可压缩]流体,$(dif rho)/(dif t) =0$
 
@@ -249,9 +258,10 @@ $
 故可以用水平风速积分求得垂直对流速度$w$
 
 === 热力学能量方程
+#theorem[
 $
   c_v (dif T)/(dif t) + p (dif alpha)/(dif t) = Q
-$
+$]
 
 == 大尺度运动系统控制方程
 
@@ -295,15 +305,15 @@ $
 - 零级简化：只保留方程中数量级最大的项
 - 一级简化：保留最大项和次大项
 
-零级简化后：
+#theorem("零级简化")[
 $
   cases(
   - 1/rho (partial p)/(partial x) +  f v= 0\
   - 1/rho (partial p)/(partial y) - f u =0
   )
-$
+$]
 
-一级简化后：
+#theorem("一级简化")[
 $
   cases(
     (dif u)/(dif t) = - 1/rho (partial p)/(partial x) +  f v \
@@ -311,7 +321,7 @@ $
   )
 $
 其中$f = 2 Omega sin phi$称为地转参数
-
+]
 垂直方向（准定常）：
 $
   0 = - 1/rho (partial p)/(partial z) - g
@@ -319,7 +329,8 @@ $
 
 === 连续方程
 #highlight[准水平无辐散]
-零级简化后：
+
+#theorem("连续方程零级简化")[
 $
   &(partial u)/(partial x) + 
   (partial v)/(partial y) + 
@@ -328,21 +339,48 @@ $
 "or,"\
   &(partial u)/(partial x) +
   (partial v)/(partial y) +
-  #h(10pt)
+ 
   1/rho (partial rho w)/(partial z) 
-  #h(27pt)
+  
   = 0
 $
-
+]
 === 热力学能量方程
 $
   p alpha = R T => p (dif alpha)/(dif t) + alpha (dif p)/(dif t)= R (dif T)/(dif t)\
   c_p = c_v + R
 $
-一级简化后：
+#theorem("零级简化后")[
 $
+  (partial T)/(partial t) + u (partial T)/(partial x) + v (partial T)/(partial y) = 1/c_p Q
+$]
+
+在短期且无凝结过程的研究中，非绝热作用很小$Q$可以略去。这样就变成了
+$
+  (partial T)/(partial t) = - (u (partial T)/(partial x) + v (partial T)/(partial y) )
+$
+#theorem("一级简化")[
+  $
   (partial T)/(partial t) = 
   - (u (partial T)/(partial x) + v (partial T)/(partial y))
-  + w (gamma_d -gamma)
+  +underbrace(w (gamma_d -gamma),"垂直运动引起的绝热变化")
   + 1/c_p Q
+$
+]
+
+
+- 稳定大气中$gamma_d -gamma >0$
+1. 上升运动，$w>0, -w(gamma_d-gamma)<0,partial T\/partial t <-$,绝热冷却
+2. 下降运动，$w<0, -w(gamma_d-gamma)>0,partial T\/partial t >0$,绝热增温
+
+- 不稳定大气中$gamma_d -gamma <0$
+1. 上升运动，$w>0, -w(gamma_d-gamma)>0,partial T\/partial t >0$,绝热增温
+2. 下降运动，$w<0, -w(gamma_d-gamma)<0,partial T\/partial t <-$,绝热冷却
+
+== $p$坐标系中的基本方程
+
+- 位势高度：又叫做重力位势，单位质量的物体从海平面升高$z$的高度所做的功
+
+$
+  Phi = integral_(z_0)^z g dif z = g z
 $
