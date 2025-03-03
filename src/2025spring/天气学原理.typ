@@ -384,3 +384,70 @@ $
 $
   Phi = integral_(z_0)^z g dif z = g z
 $
+#definition("位势高度")[
+  $
+    H = Phi/9.8 = 1/9.8 integral_0^z g dif z
+  $
+]
+等位势面是水平面
+
+=== $p$坐标系与$z$坐标系的关系
+1. 大尺度运动满足静力平衡关系：$(partial p)/(partial z) = -rho g$
+2. 气压随高度严格单调减少，气压与高度有一一对应关系
+
+$
+  cases(
+    F = F(x,y,p,t)\
+    p = p(x,y,z,t)
+  )
+$
+根据复合函数求导：
+$
+  cases(
+    ((partial F)/(partial x))_z = ((partial F)/(partial x))_p + (partial F)/(partial p) ((partial p)/(partial x))_z\
+    ((partial F)/(partial y))_z = ((partial F)/(partial y))_p + (partial F)/(partial p) ((partial p)/(partial y))_z\
+    (partial F)/(partial z) = (partial F)/(partial p) (partial p)/(partial z)\
+    ((partial F)/(partial x))_z = ((partial F)/(partial z))_p + (partial F)/(partial p) ((partial p)/(partial x))_z
+  )
+$
+
+- 由于空间导数的转换关系，我们不妨令$F = z$,有：$((partial z)/(partial x))_z =((partial z)/(partial y))_z=0$
+- 由静力平衡：$(partial p)/(partial z) = -rho g$
+
+
+  $
+  cases(
+    (partial Phi)/(partial x) = - 1/rho\
+    - 1/rho ((partial p)/(partial x))_z = -g ((partial z)/(partial x))_p = -((partial Phi)/(partial x))_p \
+    - 1/rho ((partial p)/(partial y))_z = -g ((partial z)/(partial y))_p = -((partial Phi)/(partial y))_p
+  )
+  $
+
+#theorem[
+  $
+    - 1/rho gradient_h p = - gradient_p Phi = - 9.8 gradient_p H
+  $
+]
+
+- 时间导数的转换关系
+$p$坐标系与$z$坐标系的全导数相同，即
+#definition[
+$
+  underbrace(((dif F)/(dif t))_z,"空间固定点") = underbrace(((dif F)/(dif t))_p,"等压面固定点")
+$
+]
+
+$
+  ((partial F)/(partial t))_z = ((partial F)/(partial t))_p + (partial F)/(partial p) ((partial p)/(partial t))_z
+$
+let $F = z$,
+$
+  ((partial z)/(partial t))_z = ((partial z)/(partial t))_p + (partial z)/(partial p) ((partial p)/(partial t))_z
+$
+
+#theorem[
+  $
+    g ((partial z)/(partial t))_p =  1/rho ((partial p)/(partial t))_z\
+    ((partial Phi)/(partial t))_p =  1/rho ((partial p)/(partial t))_z
+  $
+]
