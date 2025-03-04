@@ -1,27 +1,33 @@
 #import "../book.typ": book-page
-
+#import "@preview/dvdtyp:1.0.1": *
 #show: book-page.with(title: "现代气候学")
 
+
+#show: dvdtyp.with(
+  title: "现代气候学",
+  author: "Otto Deng"
+)
 #outline()
 
 = 绪论
-- 气候：
+#definition("气候")[
 
 在太阳辐射和气候系统各子系统相互作用下，地球上某一区域在#highlight[某一特定时段]内天气（气候要素）的#highlight[多年]平均状况及其极端情形。
+]
 
-- 气候状态：
+#definition("气候状态")[
 
 气候状态是指某一地区在某一特定时段内的天气状况。
+]
+#definition("气候态")[
 
-- 气候态：
+气候态是指某一地区在某一特定时段内的气候状态的统计#highlight[（30年）平均值。]]
 
-气候态是指某一地区在某一特定时段内的气候状态的统计#highlight[（30年）平均值。]
-
-- 气候系统:
+#definition("气候系统")[
 大气圈、水圈、冰雪圈、岩石圈和生物圈
 
 相互作用，体现为系统间能量、动量和物质的交换
-
+]
 == 气候系统的反馈性
 正反馈：
 
