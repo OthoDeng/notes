@@ -1,13 +1,17 @@
 #import "../book.typ": book-page
-
+#import "@preview/dvdtyp:1.0.1": *
 #show: book-page.with(title: "计算方法")
 
+#show: dvdtyp.with(
+  title: "计算方法",
+  author: "Otto Deng"
+)
 #outline()
 
 
 = 误差
-误差分类：
-观测误差、模型误差、截断误差、舍入误差
+#definition("分类")[
+观测误差、模型误差、截断误差、舍入误差]
 
 - 绝对误差:
 $
@@ -31,9 +35,8 @@ $
 == 有效数字
 1. $x^*$的#highlight[绝对误差限]是它某一数位的#highlight[半个单位]
 2. 从$x^*$左起第一个非0数字到该数位共有$n$位，即有$n$位有效数字
-$
-x = pi = 3.1415925...
-$
+#example[
+$x = pi = 3.1415925...$
 
 - $3.141 => "三位"$
 $
@@ -49,7 +52,7 @@ x^* = 3.142, abs(x^* -x)
 &= 0.0004073...\
 &<= 0.0005 = 1/2 times 10^(-3)
 $
-
+]
 == 运算误差分析
 $
   e(y) = y -y^* = f(x_1,x_2) - f(x_1^*,x_2^*)
@@ -60,18 +63,19 @@ $
   (partial f(x_1^*,x_2^*))/(partial x_1) e(x_1) +
   (partial f(x_1^*,x_2^*))/(partial x_2) e(x_2)
 $
-相对误差：
+#definition("相对误差")[
 $
   e_r(y) = e(y)/y^* = 
   (partial f(x_1^*,x_2^*))/(partial x_1) x_1/y^* e_r (x_1) +
   (partial f(x_1^*,x_2^*))/(partial x_2) x_2/y^* e_r (x_2)
-$
+$]
 == 提高计算精度
+#theorem[
 $
   sqrt(x+epsilon) -sqrt(x) = epsilon/(sqrt(x+epsilon)+sqrt(x))\
 
   ln(x+epsilon) - ln(x) = ln(1 + epsilon/x)
-$
+$]
 
 = 插值法
 
@@ -109,6 +113,7 @@ $
 $
 
 则
+#definition[
 $
   l_0 (x) &= 
   ((x-x_1)(x-x_2)...(x-x_n))
@@ -119,8 +124,8 @@ l_i (x) &=
 product_(j=0\ j!=i)^n 
 (x-x_j)/(x_i -x_j)
 $
-
-- 插值余项/截断误差
+]
+#definition("插值余项/截断误差")[
 $
   R_n (x) &= f(x) - L_n (x) \
   &= 
@@ -128,7 +133,7 @@ $
   (x -x_0)(x-x_1)...(x-x_n)\
   &xi in (a,b)
 $
-
+]
 #highlight[注意：]
 $
   sum_(i=0)^n l_i (x) =1, sum_(i=0)^n x_i l_i (x) = x
