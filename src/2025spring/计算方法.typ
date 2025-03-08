@@ -138,3 +138,44 @@ $
 $
   sum_(i=0)^n l_i (x) =1, sum_(i=0)^n x_i l_i (x) = x
 $
+=== 使用Python 实现Lagrange 插值示例
+```python
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+# Given data points
+x = [0.2, 0.4, 0.6, 0.8, 1.0]
+y = [0.98, 0.92, 0.81, 0.64, 0.38]
+
+# Define the Lagrangian basis polynomial
+def lagrange_basis(x_values, j, x_target):
+    result = 1.0
+    for i in range(len(x_values)):
+        if i != j:
+            result *= (x_target - x_values[i]) / (x_values[j] - x_values[i])
+    return result
+
+# Define the Lagrangian interpolation polynomial
+def lagrange(x_values, y_values, x_target):
+    result = 0.0
+    for j in range(len(x_values)):
+        result += y_values[j] * lagrange_basis(x_values, j, x_target)
+    return result
+
+# Create points for the interpolation curve
+x_interp = np.linspace(0.1, 1.1, 100)
+y_interp = [lagrange(x, y, xi) for xi in x_interp]
+
+
+# Plot the results
+plt.figure(figsize=(10, 6))
+plt.plot(x_interp, y_interp, 'r-', label='Interpolation')
+plt.plot(x, y, 'bo', label='$x, f(x)$')
+plt.title('Lagrange Interpolation')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid(True)
+plt.legend()
+plt.savefig('lagrange.png')
+```
