@@ -366,6 +366,7 @@ $
   +underbrace(w (gamma_d -gamma),"垂直运动引起的绝热变化")
   + 1/c_p Q
 $
+$gamma_d = - dif T\/dif z = g\/ C_p approx 10 degree C \/ \k\m, gamma = - partial T\/partial z approx 6.5 degree C\/ \k\m$
 ]
 
 
@@ -451,3 +452,78 @@ $
     ((partial Phi)/(partial t))_p =  1/rho ((partial p)/(partial t))_z
   $
 ]
+
+=== 一级简化连续方程
+#theorem("一级简化连续方程")[
+  $
+    (partial omega)/(partial p) + ((partial u)/(partial x))_p + ((partial v)/(partial y))_p = 0\
+    omega = (dif p)/(dif t) = 
+    ((partial p)/(partial t))_z + 
+    u ((partial p)/(partial x))_z + 
+    v ((partial p)/(partial y))_z + 
+    w (partial p)/(partial z)
+  $
+]
+$omega approx w (partial p)/(partial z) = - rho g w$
+由于气压随着高度降低
+- 上升运动时，$w>0, omega < 0$ 
+- 下降运动时，$w<0, omega > 0$
+
+=== 运动方程
+#theorem("一级简化运动方程")[
+  $
+    cases(
+      (dif u)/(dif t) -f v = - ((partial Phi)/(partial x))_p\
+      (dif v)/(dif t) + f u = - ((partial Phi)/(partial y))_p\
+      (dif omega)/(dif t) = - 1/rho
+    )
+  $
+]
+
+=== 热力学能量方程
+#theorem[
+  $
+    ((partial T)/(partial t))_p + bold(V) dot gradient_p T - omega (Gamma_d - Gamma)= 1/c_p Q
+  $
+$Gamma = gamma\/ rho g, Gamma_d = gamma_d \/ rho g$
+]
+
+== 风场和气压场的关系
+
+=== 地转风
+#definition("地转风")[
+水平地转偏向力和水平气压梯度力平衡条件下，空气沿着平行等压线的#highlight[水平直线]运动。
+]
+$f = 2 Omega sin phi$
+“z”坐标系绘制地面图上的等压线；“p”坐标系绘制高空图上的等高线。
+
+#definition("由“z”坐标系中")[
+  $
+    cases(
+      0 = - 1/rho (partial p)/(partial x) + f v\
+      0 = - 1/rho (partial p)/(partial y) - f u
+    )
+    ==>
+    cases(
+      u_g = - 1/(f rho) (partial p)/(partial y)\
+      v_g = 1/(f rho) (partial p)/(partial x)
+    )
+  $
+  $bold(V)_g = - 1/(rho g) gradient_h p times bold(k)$
+]
+
+
+#definition("在“p”坐标系中")[
+  $
+    cases(
+      u_g = - 1/(f rho) (partial Phi)/(partial y) = g/f (partial z)/(partial y)\
+      v_g = 1/(f rho) (partial Phi)/(partial x) = g/f (partial z)/(partial x)
+    )
+  $
+  $bold(V)_g = -1/f gradient Phi times bold(k) = - g/f gradient z times bold(k)$
+]
+地转平衡成立条件：
+- 在#highlight[中纬度自由大气]的#highlight[大尺度]系统中，当气流呈#highlight[水平直线运动且无摩擦]时，地转平衡严格成立。
+
+地转风平行于等压线。
+北半球背风而立，低压在左，高压在右；低压中心逆时针（气旋），高压中心顺时针（反气旋）。
