@@ -27,5 +27,6 @@ There are some ways to reach me:
 
 = Acknowledgement
 This note is made by #link("https://github.com/typst/typst")[Typst], built with #link("https://github.com/Myriad-Dreamin/shiroa")[shiroa].
+In the lastest version of this note, I imported the #link("https://typst.app/universe/package/dvdtyp/")[dvdtyp] template for better styling.
 
 *shiroa* (_Shiro A_, or _The White_, or _云笺_) is a simple tool for creating modern online (cloud) books in pure typst. It has similar use cases as #link("https://rust-lang.github.io/mdBook/index.html")[mdBook], which is ideal for creating product or API documentation, tutorials, course materials or anything that requires a clean, easily navigable and customizable presentation.
