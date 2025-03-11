@@ -102,7 +102,7 @@ dots.v,dots.v,dots.v,dots.down,dots.v;
 $
 线性方程有唯一解
 
-- Lagrange 插值
+== Lagrange 插值
 构造
 $
   P_n (x) &= l_0(x) y_0 + l_1(x) y_1 + l_2(x) y_2 + ... + l_n (x) y_n\
@@ -125,6 +125,13 @@ product_(j=0\ j!=i)^n
 (x-x_j)/(x_i -x_j)
 $
 ]
+
+#highlight[注意：考试填空题]
+$
+  sum_(i=0)^n l_i (x) &=1, "取"f(x)=1\
+sum_(i=0)^n x_i l_i (x) &= x, "取"f(x)=x\
+==> sum_(i=0)^n f(x_i) l_i (x) &= f(x)
+$
 #definition("插值余项/截断误差")[
 $
   R_n (x) &= f(x) - L_n (x) \
@@ -134,11 +141,10 @@ $
   &xi in (a,b)
 $
 ]
-#highlight[注意：]
-$
-  sum_(i=0)^n l_i (x) =1, sum_(i=0)^n x_i l_i (x) = x
-$
-=== 使用Python 实现Lagrange 插值示例
+
+
+
+== 使用Python 实现Lagrange 插值示例
 ```python
 import numpy as np
 
@@ -179,3 +185,43 @@ plt.grid(True)
 plt.legend()
 plt.savefig('lagrange.png')
 ```
+
+#figure(
+  image("../pic/lagrange.png"),
+  caption: [`plt.show()` Demonstration, where Runge Phenomenon is observed. 为避免龙格现象，可以使用分段插值（分段插值的余项是分段插值的余项之和）或者使用Chebyshev 节点（最小化插值多项式的最大误差）。]
+)
+
+
+== Newton 插值
+希望增加节点时，只需要增加相应的项。
+
+#definition("一阶差商")[
+  $
+    f[x_i,x_j] = (f(x_i) - f(x_j))/(x_i - x_j)
+  $
+]
+二阶差商
+  $
+    f[x_i,x_j,x_k] = (f[x_j,x_k] - f[x_i,x_j])/(x_k - x_i)
+  $
+
+
+差商表对角线即为Newton 插值多项式系数
+#theorem("Newton 插值多项式")[
+$
+  f(x) = 
+  &f(x_0) + \
+  &f[x_0,x_1](x-x_0) + \
+  &f[x_0,x_1,x_2](x-x_0)(x-x_1) + \
+  &... + \
+  &f[x_0,x_1,...,x_n](x-x_0)(x-x_1)...(x-x_(n-1))
+$
+]
+余项与相等于Lagrange 余项相同
+
+$k$阶差商与$k$阶导数的关系
+#theorem[
+  $
+    f[x_0,x_1,...,x_k] = (f^(k) (xi))/k!, xi in (min x_i, max x_i)
+  $
+]
