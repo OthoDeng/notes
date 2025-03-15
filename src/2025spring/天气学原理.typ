@@ -527,3 +527,156 @@ $f = 2 Omega sin phi$
 
 地转风平行于等压线。
 北半球背风而立，低压在左，高压在右；低压中心逆时针（气旋），高压中心顺时针（反气旋）。
+
+=== 梯度风
+
+- 梯度风平衡：#highlight[ 水平气压梯度力、地转偏向力和惯性离心力]平衡时的大气运动形式。此时，大气作匀速曲线运动。
+
+水平运动方程一级简化:
+#definition("梯度风")[
+  $
+    (dif_h bold(V)_h)/(dif t) = - 1/rho gradient_h p - f bold(k) times bold(V)_h
+    = bold(G + A)
+  $
+  气压梯度力G 地转偏向力A 惯性离心力C
+
+仅仅考虑运动方向的改变时，向心加速度= $bold(G +A),bold(G+A+)$惯性离心力= 0
+]
+
+切换到自然坐标系中：（气旋式运动$R_T>0$,反气旋式运动$R_T<0$）
+$
+  (dif bold(V))/(dif t) = (dif V)/(dif t) bold(s) +V^2/R_T bold(n)
+$
+
+代入自然坐标系：
+$
+  cases(
+    (dif V)/(dif t) = - 1/rho (partial p)/(partial s) &\, "切向方程"\
+    V^2/R_T = - 1/rho (partial p)/(partial n) - f V &\, "法向方程"
+  )
+$
+$
+  bold(G) &= -1/rho (partial p)/(partial s) bold(s) - 1/rho (partial p)/(partial n) bold(n)\
+  bold(A) &= f bold(V) times bold(k) = f V bold(s) times bold(k) = - f V bold(n)
+$
+
+当坐标系随地球一起转动时，向心加速度消失，引入惯性离心力
+
+气压梯度力、地转偏向力、惯性离心力平衡
+ 
+讨论反气旋环流：大尺度运动系统中，等压线曲率较小，$R_T$较大，$C$较小 
+$
+bold(A>C)
+$
+反气旋性环流中心必然是高压环流中心
+
+#theorem("求解梯度风风速")[
+  $
+    V_f= - R_T/2 f + R_T/2 sqrt(f^2 - 4/(rho R_T) (partial p)/(partial s))
+  $
+]
+- 气旋性环流中，$R_T>0,partial p\/ partial n<0$。因此$partial p\/ partial n -> oo, V_f -> oo$
+#highlight[气旋性环流中，风速和气压梯度可任意地大。]
+
+- 反气旋性环流中，$R_T<0,partial p\/ partial n<0$.必须有
+$
+  abs((partial p)/(partial s)) <=  (rho f^2 abs(R_T))/4, (V_f)_(max) = abs(R_T )/2 f
+$
+#highlight[反气旋性环流中，风速和气压梯度不可无限增大]。曲率越大（$R_T$越小），气压梯度和梯度风越小，即越接近反
+气旋中心，两者越小。
+
+#theorem("地转风和梯度风的关系")[
+  $
+    V_g/V_f = 1 + V_f/(f R_T)
+  $
+]
+气压梯度相同，反气旋的梯度风速 > 气旋的梯度风速.
+
+=== 热成风
+地转风随高度的改变量，即上下两层地转风的差。
+#definition("热成风")[
+  $
+    cases(
+      u_g = - 1/(f ) (partial Phi)/(partial y) \
+      v_g = 1/(f ) (partial Phi)/(partial x) 
+    )
+  $
+  地转风与等压面上的位势梯度成正比，位势梯度即等压面的坡度
+]
+
+两层等压面之间厚度：
+$
+  integral_(z_0)^(z_1) dif z 
+  = - integral_(p_0)^(p_1) 1/(rho g) dif p
+  = - integral_(p_0)^(p_1) 1/(g) (R T)/(p g) dif p
+$
+
+$
+  h = z_1 - z_0 = R/g macron(T) ln p_0/p_1
+$
+$macron(T)$为两层等压面之间的平均温度，$p_1<p_0$
+
+$
+cases(
+  u_T = - g/f partial/(partial y)(z_1 - z_0)\
+  v_T = g/f partial/(partial x)(z_1 - z_0)
+)
+<=>
+cases(
+  u_T = - g/f partial/(partial y) (R/g macron(T) ln p_0/p_1)\
+  v_T = g/f partial/(partial x) (R/g macron(T) ln p_0/p_1)
+)\
+
+bold(V)_T = g/f bold(k) times gradient h,
+bold(V)_T = g/f ln p_0/p_1 bold(k) gradient macron(T)
+$
+
+#theorem[
+  $
+    - (partial bold(V)_g)/(partial p) = R/(f p) bold(k) times gradient_h T
+  $
+]
+
+- 热成风与等平均温度线平行，北半球背热成风而立，低温在左，高温在右
+
+- 热成风风速大小与平均温度梯度成正比，与纬度成反比。等温线越密集，热成风越大
+
+- 越到高空，地转风越趋近于热成风的方向
+
+地转风随高度#highlight[逆时针]旋转，两层等压面间有#highlight[冷平流]\
+地转风随高度顺时针旋转，两层等压面间有暖平流
+
+地面低压中心位于高空槽前脊后，高压中心位于高空槽后脊前
+
++ 两层等压面间的层次越厚，热成风越大
++ 温度梯度指向北，热成风方向必然指向东
++ 越到高层，地转风越向东偏转，逐渐趋于平行等温线
+
+对流层高层主要为西风气流
+
+#definition("深厚系统")[
+  低压冷中心，高压暖中心。热成风与梯度风方向一致。相反为浅薄系统。
+]
+
+正压大气 Barotropic: 
+密度仅仅与气压有关，$rho = rho(p)$，等压面分析不出等温线，无热成风。
+
+$(partial bold(V)_g)\/(partial p) = 0$
+地转风不随高度变化。
+
+在实际的500hPa天气图上，等温线的分布北密南疏。
+
+
+=== 地转偏差
+#definition("地转偏差")[
+实际风与地转风的矢量差，或称为偏差风
+$
+  bold(D) = bold(V) - bold(V)_g
+$
+]
++ 地转偏差使实际风穿越等压线，引起气压场的变化
+
++ 当风穿越等压线时气压梯度力对空气做功，改变空气动能，促使风速变化
+
++ 造成垂直运动的重要原因，进而产生天气
+
