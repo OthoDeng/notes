@@ -225,3 +225,158 @@ $k$阶差商与$k$阶导数的关系
     f[x_0,x_1,...,x_k] = (f^(k) (xi))/k!, xi in (min x_i, max x_i)
   $
 ]
+
+= 函数逼近
+函数类$A$给定函数$f(x)$, $f(x) in A$, 在$B #sym.subset A$ 找到函数$p(x)$,使得$p(x)$ 与$f(x)$ 误差在某种意义上最小。
+
+== 范数与内积
+范数(Norm)
++ $norm(x) >= 0 "only" x = 0, norm(x) =0$ 非负性
++ $norm(alpha x) = abs(alpha) norm(x)$ 齐次性
++ $norm(x + y) <= norm(x) + norm(y)$ 三角不等式性
+
+#definition("常用范数")[
+对于$R^n$ 上的向量，$x = (x_1,x_1,dots,x_n)^T$
+$
+  &norm(x)_oo = max_(1<=i<=n) abs(x_i), "无穷范数/最大范数"\
+  &norm(x)_1 = sum_(n = 1)^(n) abs(x_i), "1-范数"\
+  &norm(x)_2 = (sum_(n = 1)^(n) x_i^2)^(1/2). "2-范数"\
+$
+
+]
+
+== 最佳逼近
+
+#definition("最佳逼近")[
+设$f(x) in C[a,b]$ 如果$p^*(x) in Phi = "span"{phi_0,phi_1,dots,phi_n$
+满足 
+$
+  norm(f(x) - p^*(x)) = min_{p(x) in Phi} norm(f(x) - p(x))
+$ 
+称$p^*(x)$为$f(x)$在$Phi$ 上的最佳逼近
+]
+
+如果$norm(f(x) - p^*(x))^2_2 = min_(p in H_n) norm(f(x)-p(x)) = min_(p in H_n) integral_b^a [f(x)-p(x)]^2 dif x$,
+则称为最佳平方逼近多项式。
+
+#theorem[
+$f(x)$与$g(x)$正交： 
+$
+  (f,g) = integral_b^a rho(x) f(x) g(x) dif x = 0
+$
+]
+
+#definition("正交函数族")[
+$
+  (phi_i,phi_j) = 
+  cases(
+    0\, i != j\
+    A_k \, i = j
+  )
+$
+当$A_k = 1$时，称为标准正交函数族。
+]
+
+== Gram-Schmidt 正交化
+#theorem[
+  对于${1,x,dots,x^n}$
+  $
+    p_0 (x) = 1, p_n (x) = x^n - sum_(j=0)^(n-1) ((x^n,p_j))/((p_j,p_j) p_j (x)) p_j\
+  $
+]
+
+== Legendre 多项式
+#theorem[
+  对于$rho(x) =1$
+  $
+    P_0 (x) = 1, P_1 (x) = x\
+    P_(n+1) (x) = (2n + 1)/(n + 1) x P_n (x) - n/(n + 1) P_(n-1) (x)\
+  $
+]
+$
+  integral_(-1)^1 P_n (x) P_m (x) dif x = 
+  cases(
+    0 \, n != m\
+    2/(2n+1) \, n = m
+  )
+$
+
+== Chebyshev 多项式
+#theorem("Chebyshev 多项式")[
+  对于$rho(x) = 1/sqrt(1-x^2)$
+  $
+    T_0 (x) = 1, T_1 (x) = x\
+    T_(n+1) (x) = 2x T_n (x) - T_(n-1) (x)\
+  $
+  $T_n = cos( n arccos x)$
+]
+$
+  integral_(-1)^1 T_n (x) T_m (x) 1/sqrt(1-x^2) dif x = 
+  cases(
+    0 \, n != m\
+    pi/2 \, n = m != 0\
+    pi \, n = m = 0
+  )
+$
+用切比雪夫多项式的零点插值可避免龙格现象，保证 $L_n (x)$ 收敛。
+
+== 最佳一致逼近
+#theorem[
+  对于$f(x)$在$[a,b]$上连续，$p_n (x)$为$n$次多项式
+  $
+  norm(f(x) - p_n (x))_oo = max_(a<=x<=b) abs(f(x) - p_n (x))\
+  $
+]
+
+== 最佳平方逼近举例
+求$f(x) = sqrt(x)$  在$[1/4,1]$上的在$Phi = "span"{1,x}$中关于$rho(x)= 1$的最佳平方逼近多项式。
+
+已知$phi_0 = 1,phi_1 = x$, 设所求$p^*_1 (x)= a_0 +a_1 x$，有方程：
+$
+  mat(
+    delim:"[",
+    (phi_0,phi_0),(phi_0,phi_1);
+    (phi_1,phi_0),(phi_1,phi_1)
+  )
+  mat(
+    delim:"[",
+    a_0;a_1
+  )
+  = 
+  mat(
+    delim:"[",
+    (phi_0,f(x));\
+    (phi_1,f(x))
+  )
+$
+
+其中
+$(phi_0,phi_1)= integral_(1/4)^1 x dif x = 15/32,
+(f,phi_1)= integral_(1/4)^1 x sqrt(x) dif x = 31/80$
+
+有：
+$
+  mat(
+    delim:"[",
+    3/4,15/32;
+    15/32,21/64
+  )
+  mat(
+    delim:"[",
+    a_0;a_1
+  )
+  = 
+  mat(
+    delim:"[",
+   7/12;
+   31/80
+  )
+  => 
+  cases(
+    a_0 = 10/27,
+    a_1 = 88/135
+  )
+
+  =>
+  p^*_1 (x) = 10/27 + 88/135 x
+$
